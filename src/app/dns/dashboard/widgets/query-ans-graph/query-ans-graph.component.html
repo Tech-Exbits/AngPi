@@ -1,0 +1,22 @@
+<div class="card">
+    <div class="card-body">
+        <div class="inner">
+            <p>Queries answered by</p>
+        </div>
+        <div class="chart-fh">
+            <ngx-charts-pie-chart
+            [scheme]="colorScheme"
+            [results]="data"
+            [gradient]="gradient"
+            [legend]="showLegend"
+            [legendPosition]="legendPosition"
+            [labels]="showLabels"
+            [doughnut]="isDoughnut"
+            (select)="onSelect($event)"
+            (activate)="onActivate($event)"
+            (deactivate)="onDeactivate($event)"
+            >
+            </ngx-charts-pie-chart>
+        </div>
+    </div>
+</div>

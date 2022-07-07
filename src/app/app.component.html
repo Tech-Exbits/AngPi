@@ -1,0 +1,36 @@
+
+
+<ng-template #baseTemplate>
+    
+    <div class="main">
+         <!--========== HEADER ==========-->
+        <div>
+            <ngx-spinner name="master"></ngx-spinner>
+            <app-header></app-header>
+        </div>
+        <!--========== CONTENTS ==========-->
+        <div class="bodyDiv">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container-fluid">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div> 
+        <!--========== FOOTER ==========-->
+        <div class="footerDiv">
+            <app-footer></app-footer>
+        </div>
+    </div>
+    
+</ng-template>
+
+<ng-template #homeTemplate>
+    <router-outlet></router-outlet>
+</ng-template>
+
+<ng-template #notAvailTemplate>
+    <router-outlet></router-outlet>
+</ng-template>
+
+<ng-container switch [DefaultTemplate]="baseTemplate" [HomeTemplate]="homeTemplate" [NotAvailTemplate]="notAvailTemplate"></ng-container>
+

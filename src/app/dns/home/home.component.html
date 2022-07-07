@@ -1,0 +1,7 @@
+<div class="container bg-faded vertical-center">
+    <div>
+        <img class="header__logo" *ngIf="AppLogo" [src]="AppLogo">
+        <p><strong>{{ AppName ? AppName : 'Alexar' }}&nbsp;</strong>: Your black hole for Internet advertisements</p>
+        <a routerLink="/dns/admin">Did you mean to go to the admin panel?</a>
+    </div>
+</div>

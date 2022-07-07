@@ -1,0 +1,85 @@
+<div class="container bg-faded vertical-center-inner" [style]="isDesktop ? 'height: 5%;' : ''">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="text-center">
+                <img class="header__logo" *ngIf="AppLogo" [src]="AppLogo">
+            </div>
+            
+            <br />
+
+            <div class="panel-title text-center">
+                <span class="logo-lg" style="font-size: 25px;">
+                    <b>{{ AppName ? AppName : 'Alexar' }}</b>
+                </span>
+            </div>
+            
+            <p class="login-box-msg">Sign in to start your session</p>
+            <div id="cookieInfo" class="panel-title text-center text-red" style="font-size: 150%" hidden="">
+                Verify that cookies are allowed for <code>lucifer.com</code>
+            </div>
+        </div>
+
+        <div class="panel-body col-sm-12">
+            <form action="" id="loginform" method="post">
+                <div class="form-group">
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                        <div class="input-group-text"><i class='bx bxs-key'></i></div>
+                        </div>
+                        <input type="password" class="form-control" id="inlineFormInputGroup" placeholder="Password">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button type="submit" class="btn btn-primary form-control">
+                            <i class='bx bxs-log-in btn-item-align'></i>
+                            <span class="btn-item-align">Login</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <br />
+                
+                <div class="row">
+                    <div *isDesktop class="col-sm-8" style="text-align: justify;">
+                        <ul>
+                            <li><kbd>Return</kbd> → Log in and go to requested page (login)</li>
+                            <li><kbd>Ctrl</kbd>+<kbd>Return</kbd> → Log in and go to Settings page</li>
+                        </ul>
+                    </div>
+
+                    <br />
+
+                    <div class="col-sm-12">
+                        <div class="icheck-primary">
+                            <input type="checkbox" id="logincookie" name="persistentlogin">&nbsp;
+                            <label for="logincookie">Remember me for 7 days</label>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <accordion [isAnimated]="true" style="border-top: 2px solid var(--primaryColor);">
+                            <accordion-group heading="Forgot password?" [panelClass]="'panel-default'">
+                                <div class="col-sm-12" style="text-align: justify;">
+                                    After installing Pi-hole for the first time, a password is generated and displayed to the user. The
+                                    password cannot be retrieved later on, but it is possible to set a new password (or explicitly disable
+                                    the password by setting an empty password) using the command
+                                </div>
+                                <br />
+                                <div class="col-sm-12">
+                                    <pre>sudo pihole -a -p</pre>
+                                </div>
+                            </accordion-group>
+                        </accordion>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

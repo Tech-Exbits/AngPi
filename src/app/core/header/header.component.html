@@ -1,0 +1,313 @@
+<header class="header">
+    <div *isDesktop class="header__container">
+        <a class="header__logo nohover">
+            {{ AppName ? AppName : 'Alexar' }}
+        </a>
+
+        <div class="header__search">
+            <input type="text" placeholder="Search" class="header__input">
+            <i class='bx bx-search header__icon'></i>
+        </div>
+
+        <div class="header__toggle" (click)="toggleMenu()">
+            <i #toggleButton class='bx' [ngClass]="!showMenu ? 'bx-menu' : 'bx-x'" id="header-toggle"></i>
+        </div>
+    </div>
+    <div *isMobile class="header__container">
+        <div class="header__toggle" (click)="toggleMenu()">
+            <i #toggleButton class='bx' [ngClass]="!showMenu ? 'bx-menu' : 'bx-x'" id="header-toggle"></i>
+        </div>
+
+        <div class="header__search">
+            <input type="text" placeholder="Search" class="header__input">
+            <i class='bx bx-search header__icon'></i>
+        </div>
+    </div>
+</header>
+
+<!--========== Nav ==========-->
+<div #menu class="nav" id="navbar" [ngClass]="showMenu ? 'show-menu' : ''">
+    <nav class="nav__container">
+        <div>
+            <a class="nav__link nav__logo nohover">
+                <img [class]="isDesktop ? 'header__logo' : 'header__img'" *ngIf="AppLogo" [src]="AppLogo">
+                <i *ngIf="!AppLogo" class='bx bxs-disc nav__icon' ></i>
+                <span *ngIf="!AppLogo || isMobile" class="nav__logo-name" style="padding-left: 5%;"><h3 class="nav__subtitle">{{ AppName ? AppName : 'Alexar' }}</h3></span>
+            </a>
+
+            <div class="nav__list">
+                <div *ngIf="isLogin" class="nav__items">
+                    <div class="nav__dropdown">
+                        <div class="nav__link">
+                            <i class='bx bxs-zap nav__icon' [ngClass]="StatusClass"></i>
+                            <span class="nav__name"><h3 class="nav__subtitle">{{ Name ? Name : 'Acumen-DNS'}}</h3></span>
+                        </div>
+                        <div class="nav__dropdown-collapse">
+                            <div class="nav__dropdown-content">
+                                <a class="nav__link nohover">
+                                    <i class='bx bx-radio-circle-marked nav__icon' ></i>
+                                    <span class="nav__name">{{ isRunning ? 'Online' : 'Offline' }}</span>
+                                </a>
+                                <a class="nav__link nohover">
+                                    <i class='bx bxs-thermometer nav__icon' ></i>
+                                    <span class="nav__name">{{ Temperature ? Temperature : '—' }}</span>
+                                </a>
+                                <a class="nav__link nohover">
+                                    <i class='bx bxs-server nav__icon' ></i>
+                                    <span class="nav__name">{{ Load ? Load : '—' }}</span>
+                                </a>
+                                <a class="nav__link nohover">
+                                    <i class='bx bx-line-chart nav__icon' ></i>
+                                    <span class="nav__name">{{ MemoryUsage ? MemoryUsage : '—' }}</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a routerLink="./dns/admin" class="nav__link active">
+                        <i class='bx bx-home nav__icon' ></i>
+                        <span class="nav__name">Dashboard</span>
+                    </a>
+
+                    <a routerLink="./" class="nav__link">
+                        <i class='bx bx-notepad nav__icon' ></i>
+                        <span class="nav__name">Query Log</span>
+                    </a>
+                    
+                    <div class="nav__dropdown">
+                        <a routerLink="./" class="nav__link">
+                            <i class='bx bx-time nav__icon'></i>
+                            <span class="nav__name">Long-term data</span>
+                            <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                        </a>
+
+                        <div class="nav__dropdown-collapse">
+                            <div class="nav__dropdown-content">
+                                <a routerLink="./" class="nav__dropdown-item nav__link">
+                                    <i class='bx bxs-pie-chart-alt-2 nav__icon' ></i>
+                                    <span class="nav__name">Graphics</span>
+                                </a>
+                                <a routerLink="./" class="nav__dropdown-item nav__link">
+                                    <i class='bx bx-note nav__icon' ></i>
+                                    <span class="nav__name">Query Log</span>
+                                </a>
+                                <a routerLink="./" class="nav__dropdown-item nav__link">
+                                    <i class='bx bx-note nav__icon' ></i>
+                                    <span class="nav__name">Top Lists</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a routerLink="./" class="nav__link">
+                        <i class='bx bx-check-shield nav__icon' ></i>
+                        <span class="nav__name">Whitelist</span>
+                    </a>
+
+                    <a routerLink="./" class="nav__link">
+                        <i class='bx bx-shield-x nav__icon' ></i>
+                        <span class="nav__name">Blacklist</span>
+                    </a>
+
+                    <div class="nav__dropdown">
+                        <a routerLink="./" class="nav__link">
+                            <i class='bx bx-category nav__icon' ></i>
+                            <span class="nav__name">Manage</span>
+                            <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                        </a>
+
+                        <div class="nav__dropdown-collapse">
+                            <div class="nav__dropdown-content">
+                                <a routerLink="./" class="nav__dropdown-item nav__link">
+                                    <i class='bx bx-group nav__icon' ></i>
+                                    <span class="nav__name">Groups</span>
+                                </a>
+                                <a routerLink="./" class="nav__dropdown-item nav__link">
+                                    <i class='bx bx-laptop nav__icon' ></i>
+                                    <span class="nav__name">Clients</span>
+                                </a>
+                                <a routerLink="./" class="nav__dropdown-item nav__link">
+                                    <i class='bx bx-cabinet nav__icon' ></i>
+                                    <span class="nav__name">Domains</span>
+                                </a>
+                                <a routerLink="./" class="nav__dropdown-item nav__link">
+                                    <i class='bx bx-shield-quarter nav__icon' ></i>
+                                    <span class="nav__name">Adlists</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="isRunning" class="nav__dropdown">
+                        <a routerLink="./" class="nav__link">
+                            <i class='bx bxs-notification-off nav__icon' ></i>
+                            <span class="nav__name">Disable</span>
+                            <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                        </a>
+
+                        <div class="nav__dropdown-collapse">
+                            <div class="nav__dropdown-content">
+                                <a routerLink="./" class="nav__dropdown-item nav__link">
+                                    <i class='bx bxs-notification-off nav__icon' ></i>
+                                    <span class="nav__name">Indefinitely</span>
+                                </a>
+                                <a routerLink="./" class="nav__dropdown-item nav__link">
+                                    <i class='bx bx-time-five nav__icon' ></i>
+                                    <span class="nav__name">10 Seconds</span>
+                                </a>
+                                <a routerLink="./" class="nav__dropdown-item nav__link">
+                                    <i class='bx bx-time-five nav__icon' ></i>
+                                    <span class="nav__name">30 Seconds</span>
+                                </a>
+                                <a routerLink="./" class="nav__dropdown-item nav__link">
+                                    <i class='bx bx-time-five nav__icon' ></i>
+                                    <span class="nav__name">5 Minutes</span>
+                                </a>
+                                <a routerLink="./" class="nav__dropdown-item nav__link">
+                                    <i class='bx bx-time-five nav__icon' ></i>
+                                    <span class="nav__name">Custom</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a *ngIf="!isRunning" routerLink="./" class="nav__link">
+                        <i class='bx bxs-notification nav__icon' ></i>
+                        <span class="nav__name">Enable</span>
+                    </a>
+
+                    <div class="nav__dropdown">
+                        <a routerLink="./" class="nav__link">
+                            <i class='bx bxs-coin-stack nav__icon' ></i>
+                            <span class="nav__name">Tools</span>
+                            <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                        </a>
+
+                        <div class="nav__dropdown-collapse">
+                            <div class="nav__dropdown-content">
+                                <a routerLink="./" class="nav__dropdown-item nav__link">
+                                    <i class='bx bxs-down-arrow-circle nav__icon' ></i>
+                                    <span class="nav__name">Update</span>
+                                </a>
+                                <a routerLink="./" class="nav__dropdown-item nav__link">
+                                    <i class='bx bx-first-aid nav__icon' ></i>
+                                    <span class="nav__name">Diagnosis</span>
+                                </a>
+                                <a routerLink="./" class="nav__dropdown-item nav__link">
+                                    <i class='bx bxs-book-alt nav__icon' ></i>
+                                    <span class="nav__name">View Logs</span>
+                                </a>
+                                <a routerLink="./" class="nav__dropdown-item nav__link">
+                                    <i class='bx bx-search-alt nav__icon' ></i>
+                                    <span class="nav__name">Query List</span>
+                                </a>
+                                <a routerLink="./" class="nav__dropdown-item nav__link">
+                                    <i class='bx bxs-window-alt nav__icon' ></i>
+                                    <span class="nav__name">Terminal</span>
+                                </a>
+                                <a routerLink="./" class="nav__dropdown-item nav__link">
+                                    <i class='bx bx-pulse nav__icon' ></i>
+                                    <span class="nav__name">Speed Test</span>
+                                </a>
+                                <a routerLink="./" class="nav__dropdown-item nav__link">
+                                    <i class='bx bxs-network-chart nav__icon' ></i>
+                                    <span class="nav__name">Network</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="nav__dropdown">
+                        <a routerLink="./" class="nav__link">
+                            <i class='bx bxs-user-badge nav__icon' ></i>
+                            <span class="nav__name">Records</span>
+                            <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                        </a>
+
+                        <div class="nav__dropdown-collapse">
+                            <div class="nav__dropdown-content">
+                                <a routerLink="./" class="nav__dropdown-item nav__link">
+                                    <i class='bx bxs-user-badge nav__icon' ></i>
+                                    <span class="nav__name">DNS</span>
+                                </a>
+                                <a routerLink="./" class="nav__dropdown-item nav__link">
+                                    <i class='bx bxs-user-badge nav__icon' ></i>
+                                    <span class="nav__name">CNAME</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a routerLink="./" class="nav__link">
+                        <i class='bx bxs-wrench nav__icon' ></i>
+                        <span class="nav__name">Settings</span>
+                    </a>
+
+                    <a routerLink="./" class="nav__link">
+                        <i class='bx bxs-dollar-circle nav__icon' ></i>
+                        <span class="nav__name">Donate</span>
+                    </a>
+                    <a routerLink="./" class="nav__link">
+                        <i class='bx bxs-book-alt nav__icon' ></i>
+                        <span class="nav__name">Documentation</span>
+                    </a>
+                </div>
+
+                <div *ngIf="!isLogin" class="nav__items">
+                    <div class="nav__dropdown">
+                        <div class="nav__link">
+                            <i class='bx bxs-zap nav__icon' [ngClass]="StatusClass"></i>
+                            <span class="nav__name"><h3 class="nav__subtitle">{{ Name ? Name : 'Acumen-DNS'}}</h3></span>
+                        </div>
+                        <div class="nav__dropdown-collapse">
+                            <div class="nav__dropdown-content">
+                                <a routerLink="./" class="nav__link nohover">
+                                    <i class='bx bx-radio-circle-marked nav__icon' ></i>
+                                    <span class="nav__name">{{ isRunning ? 'Online' : 'Offline' }}</span>
+                                </a>
+                                <a routerLink="./" class="nav__link nohover">
+                                    <i class='bx bxs-thermometer nav__icon' ></i>
+                                    <span class="nav__name">{{ Temperature ? Temperature : '—' }}</span>
+                                </a>
+                                <a routerLink="./" class="nav__link nohover">
+                                    <i class='bx bxs-server nav__icon' ></i>
+                                    <span class="nav__name">{{ Load ? Load : '—' }}</span>
+                                </a>
+                                <a routerLink="./" class="nav__link nohover">
+                                    <i class='bx bx-line-chart nav__icon' ></i>
+                                    <span class="nav__name">{{ MemoryUsage ? MemoryUsage : '—' }}</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a routerLink="./dns/admin" class="nav__link active">
+                        <i class='bx bx-home nav__icon' ></i>
+                        <span class="nav__name">Dashboard</span>
+                    </a>
+
+                    <a routerLink="./dns/login" class="nav__link">
+                        <i class='bx bx-log-in nav__icon' ></i>
+                        <span class="nav__name">Login</span>
+                    </a>
+
+                    <a routerLink="./" class="nav__link">
+                        <i class='bx bxs-dollar-circle nav__icon' ></i>
+                        <span class="nav__name">Donate</span>
+                    </a>
+
+                    <a routerLink="./" class="nav__link">
+                        <i class='bx bxs-book-alt nav__icon' ></i>
+                        <span class="nav__name">Documentation</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        <a *ngIf="isLogin" routerLink="./" class="nav__link nav__logout">
+            <i class='bx bx-log-out nav__icon' ></i>
+            <span class="nav__name">Log Out</span>
+        </a>
+    </nav>
+</div>
